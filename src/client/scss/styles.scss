@@ -1,0 +1,121 @@
+// Config
+@import "./config/_variables.scss";
+@import "./config/_reset.scss";
+
+// Components
+
+@import "./components/header.scss";
+@import "./components/footer.scss";
+@import "./components/video.scss";
+@import "./components/shared.scss";
+@import "./components/forms.scss";
+@import "./components/social-login.scss";
+@import "./components/video-player.scss";
+@import "./components/button.scss";
+@import "./components/frame.scss";
+
+// Screens
+
+@import "./screens/home.scss";
+@import "./screens/search.scss";
+@import "./screens/profile.scss";
+@import "./screens/edit-profile.scss";
+@import "./screens/upload.scss";
+@import "./screens/watch.scss";
+
+
+
+// Defaults
+html {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scroll-behavior: smooth;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  box-sizing: border-box;
+  width: 480px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    width:100% !important;
+    padding: 5vw;
+  }
+  .screen{
+    padding-top: 10vh;
+  }
+}
+
+@keyframes msgFade {
+  from {
+    transform: none;
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+}
+
+.message {
+  width: 100%;
+  padding: 10px 0;
+  margin: 20px 0;
+  text-align: center;
+  animation: msgFade 0.5s ease-in-out forwards;
+  animation-delay: 5s;
+  display: flex;
+  justify-content: space-around;
+  &.error {
+    background-color: tomato;
+    color: white;
+  }
+  &.info{
+    background-color: #0000F7;
+    color: white;
+  }
+  &.success {
+    background-color: #81BE50;
+    color: white;
+  }
+}
+
+h3{
+  font-size: 15px;
+  font-weight: 500;
+}
+h2{
+  font-size: 18px;
+  font-weight: 500;
+}
+h4{
+  font-size: 12px;
+}
+h1{
+  font-size: 22px;
+  font-weight: 600;
+}
+span, input::placeholder, input:not(input[type="button"]){
+  font-size: 12px;
+}
+p{
+  font-size: 10px;
+  line-height: 1.5rem;;
+}
+small{
+  font-size: 8px;
+}
+
+i{
+  cursor: pointer;
+}
+hr{
+  width: 80%;
+  border: 0.2px solid $lightGrey;
+}

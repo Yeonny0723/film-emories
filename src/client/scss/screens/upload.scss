@@ -1,0 +1,43 @@
+.upload__container {
+    text-align: center;
+    width: 100%;
+    padding-top: 15vh;
+    & > * {
+      margin-bottom: 2vh;
+    }
+    .upload__video {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      video {
+        max-width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+    #preview{
+      margin: 20px 0;
+    }
+  }
+
+  .palette-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 20px;
+    .palette{
+      display: grid;
+      gap: 40px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      width: fit-content;
+      height: fit-content;
+      .color{
+        width: 20px;
+        height: 20px;
+        border-radius: 100%;
+        &:hover{
+          transform: scale(1.05);
+        }
+      }
+    }
+  }

@@ -1,0 +1,60 @@
+form {
+    width: 70%;
+    max-width: 420px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    &:not(.search__form) {
+      padding: 30px;
+      background-color: rgba($color: $navy, $alpha: 0.7);
+      border-radius: 10px;
+      border: 1px solid rgba($color: #fff, $alpha: 0.1);
+    }
+  }
+  
+input:not(input[type="range"]),
+input[type="submit"] {
+  all: unset;
+  padding: 15px 20px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: $grey;
+  margin-bottom: 5px;
+  color: white;
+  width: 90%;
+  &::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+  }
+}
+
+input[type="submit"],
+.social__btn {
+  border-radius: 5px;
+  padding: 12px 20px;
+  background-color: white !important;
+  color: rgba($color: $navy, $alpha: 1) !important;
+  text-align: center !important;
+  cursor: pointer;
+  display: block;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+  &:disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+#commentForm{
+  padding:0;
+  background-color: transparent;;
+  & > textarea{
+    width: 100%;
+    padding: 10px;
+    border: solid 2px #1E90FF;
+    border-radius: 5px;
+		}
+}

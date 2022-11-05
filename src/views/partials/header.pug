@@ -1,0 +1,42 @@
+header
+    div.header-container
+        a(href="/")
+            img(src="/img/logo.png", crossorigin).logo
+        if loggedIn
+            nav
+                input#menu-btn(style="display: none;", type="checkbox")
+                label(for="menu-btn")
+                    i.fa.fa-bars
+                div.nav-links
+                    div(style="display:flex;align-items:center;justify-content:space-around;width:100%;") 
+                        div(style="display:flex;") 
+                            a(href=`/users/${loggedInUser._id}`).link
+                                div(style="margin-right:10px;")
+                                    if !loggedInUser.avatarUrl
+                                        h3 😀
+                                    else
+                                        if isHeroku 
+                                            img.header__avatar(src=loggedInUser.avatarUrl, crossorigin)
+                                        else 
+                                            img.header__avatar(src="/"+loggedInUser.avatarUrl, crossorigin)
+                            a(href=`/users/${loggedInUser._id}`).link
+                                div(style="height: 100%; display: flex;justify-content: space-around;flex-direction: column;")
+                                        h2 #{loggedInUser.name}
+                                        h4 #{loggedInUser.username}
+                        div
+                            a(href=`/users/${loggedInUser._id}`).link.subtle-btn
+                                span My Profile
+                    hr
+                    a(href="/videos/upload").link 
+                        h3 📷 &nbsp; Take a photo 
+                    hr
+                    a(href="/photobook").link 
+                        h3 🎞 &nbsp; Photobook
+                    hr
+        else
+            nav
+                ul
+                    li
+                        a(href="/login").header__btn
+                            h3 Log in/Sign UP     
+

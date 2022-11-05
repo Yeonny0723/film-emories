@@ -1,0 +1,43 @@
+a, button {
+    &:hover, &:focus{
+        opacity:0.8
+    }
+}
+
+button:disabled, button[disabled]{
+  opacity: 0.4;
+}
+
+.anchor-btn{
+    padding: 15px 30px;
+    background-color: $navy;
+    position: absolute;
+    bottom: 60px;
+    right: 30px;
+    border-radius: 50px;
+    color: white;
+    font-weight: 600;
+}
+
+.action-btn{
+    border: none;
+    padding: 15px 30px;
+    margin: 10px;
+    background-color: $navy;
+    border-radius: 50px;
+    color: white;
+    font-weight: 600;
+    text-align: center;
+    &.success {
+        background-color: #00C24E;
+    }
+}
+
+.subtle-btn{
+    border: none;
+    background-color: $lightGrey;
+    color: $grey;
+    padding: 6px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+}

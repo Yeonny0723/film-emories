@@ -1,0 +1,24 @@
+extends base
+
+block content
+    div.home-section
+        h3 Online photo booth
+        h1 Capture your moment!
+        div.home-thumbnail
+            img(src="/img/home_take-photo.jpg")
+            a(href="/videos/upload").anchor-btn.box-shadow.hover-scale Kimchi!
+    div.home-section
+        h3 Photo libray
+        h1 Photobook
+        div.home-thumbnail
+            img(src="/img/home_shoot.jpg")
+            a(href="/photobook").anchor-btn.box-shadow.hover-scale Look around!
+    div.home-section
+        h3 Our mission
+        h1 OuR NFT pLaN
+        div.home-thumbnail
+            img(src="/img/nft-plan.png")
+            a(href="/aboutUs").anchor-btn.box-shadow.hover-scale Learn more
+
+block scripts
+    script(src="/static/js/shared.js") 

@@ -1,0 +1,11 @@
+extends base
+include mixins/video
+
+block content
+    h1.title Photobook
+    h4(style="width:inherit; text-align:center;") Look around people's moment!
+    div.video-grid
+        each video in videos
+            +video(video)
+        else
+            span.empty__message No videos found

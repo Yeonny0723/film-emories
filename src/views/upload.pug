@@ -1,0 +1,71 @@
+extends base.pug
+
+block content
+    div.option__container.screen
+        h1.title  📷 🎞
+        h3 Step 1. ChOoSe YoUr FrAmE!
+        div(style="display:flex;margin:20px 0;width:50%;")  
+            include partials/frame
+            div.palette-container
+                div(style="display:flex;")
+                    h3 Palette 
+                br
+                div.palette
+                    if color_palette
+                        each color in color_palette
+                            div.color(style="background-color:#"+color, data-color=color)
+        a.action-btn(href="#scrollTo1") Next
+    
+    div.upload__container.screen#scrollTo1
+        h1.title 📷 🎞
+        h3 Step 2. Take a photo
+        span Please allow your camera access to allow shooting 😁
+        p If u still don't see anything, pls try refreshing ur page or close other browsers!
+        div.upload__video
+            video#preview
+            button#actionBtn.action-btn Shoot!
+            a(href="#output")
+                button#completeBtn.action-btn.success.hide Continue →
+            button#pauseBtn.action-btn(style="display:none;") Pause!
+            button#resumeBtn.action-btn(style="display:none;") Resume!
+            button#stopBtn.action-btn(style="display:none;") Stop!
+        
+    div.screen#output.output-container
+        h1.title 📷 🎞
+        h3 Step 3. Get your photo! 
+        div(style="display:flex; width: 70%;")
+            include partials/frame
+            div.outputBtns.center-column
+                button#download-img.action-btn 
+                    span Download image
+                button#download-video.action-btn 
+                    span Download video
+                a(href="#scrollTo2")
+                    button.action-btn 
+                        span  Share ur smile 😁
+
+    div.screen.upload__container#scrollTo2
+        h1.title 📷 🎞
+        h3 Step 4. Share it to your photobook! (optional)
+        h4 and come to see your online photobook anytime/anywhere.
+        p Online photobooks will be added to our crowd artwork. <br> Please learn about it more at →
+            a(href="/aboutUs", target="_blank").a-highlight Our mission
+        form(method="POST", enctype="multipart/form-data")
+            label(for="thumb").drop-area
+                span Choose photo
+            input(type="file", accept="image/*", required, id="thumb", name="thumb", style="font-size:12px")
+            label(for="video").drop-area
+                span Choose video
+            input(type="file", accept="video/*", required, id="video", name="video", style="font-size:12px")
+            input(placeholder="Title", required, type="text", name="title", maxlength=80)
+            input(placeholder="Description", required, type="text", name="description", minlength=5)
+            input(placeholder="Hashtags, separated by comma.", required, type="text", name="hashtags")
+            input(type="submit", value="Upload Video")
+
+block scripts
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js")
+    script(src="/static/js/upload.js") 
+    
+
+
+        

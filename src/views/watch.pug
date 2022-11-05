@@ -1,0 +1,60 @@
+extends base
+
+block content
+    h1.title #{video.title}
+    span.text-center(style="padding-bottom:15px")=new Date(video.createdAt).toLocaleDateString("en-us", {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})
+    div(style="display:flex;").center-column.watch-video-container
+        h2(style="width:100%;") ##{video.owner.name}'s photo 😎
+        if isHeroku
+            img(src=video.thumbUrl, crossorigin, style="width:40%;")
+        else
+            img(src="/"+video.thumbUrl, crossorigin, style="width:40%;")
+        label(for="watch-img", style="font-size:12px;") Description. #{video.description}
+        h2(style="width:100%;") ##{video.owner.name}'s video 📷
+        div#videoContainer(data-id=video._id)
+            if isHeroku
+                video(src=video.fileUrl, crossorigin)
+            else 
+                video(src="/"+video.fileUrl, crossorigin)
+            div#videoControls.videoControls
+                div.videoControls__play
+                    span#play.videoControls__playBtn
+                        i.fas.fa-play
+                    div.videoControls__time
+                        span#currenTime 00:00
+                        span  / 
+                        span#totalTime 00:14
+                input(type="range",step="1", value="0", min="0", max="14")#timeline.videoControls__timeline
+                div.videoControls__volume
+                    input(type="range",step="0.1", value=0.5, min="0", max="1", style="width:40px;")#volume
+                    span#mute
+                        i.fas.fa-volume-up
+                div
+                    span#fullScreen
+                        i.fas.fa-expand
+        div.video__data
+            span.video__owner Uploaded by 
+                a(href=`/users/${video.owner._id}`)=video.owner.name
+            if String(video.owner._id) === String(loggedInUser._id)
+                a(href=`${video.id}/edit`)
+                    span Edit info &rarr;
+                a(href=`${video.id}/delete`) 
+                    span Delete &rarr;
+        h2(style="width:100%;") #Share your comment!
+        if loggedIn
+            div.video__add-comments
+                form.video__comment-form#commentForm
+                    textarea(cols="50", rows="2", placeholder="Write a nice commment...")
+                    button.action-btn(style='padding:8px 13px;') Add Comment
+        div.video__comments
+            ul
+                each comment in video.comments.reverse()
+                    li.video__comment(data-id=comment.id)
+                        i.fas.fa-comment
+                        span.comment-context  #{comment.text}
+                        if String(comment.owner) == String(loggedInUser._id)
+                            span.del_comment ❌ 
+block scripts
+    script(src="/static/js/videoPlayer.js")
+    if loggedIn
+        script(src="/static/js/commentSection.js") 
