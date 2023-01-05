@@ -12,7 +12,7 @@ This is an online photo booth service where you can capture your memorable momen
 You can take a photo using a webcam and it will generate you a downloadable links for photo card and video. You will have an access to your own photobook where you can keep your photos forever and share it with your friends. 
 
 ### About Code
-I used the modern JS ES6 and compiled them using webpack and babel. I accept this MVC divide and conquer pattern to avoid duplicates and for easy maintenance and reusability. I used WebAssembly to allow the big program like ffmpeg to be able to run on the browser. The recorded video is later saved to the browser memory which reduces the burden on the server. I am now comfortable customizing middlewares / making use of sessions and cookies / creating API.
+I used the modern JS ES6 and compiled them using webpack and babel. I accept this MVC divide and conquer pattern to avoid duplicates and for easy maintenance and reusability. I used webassembly-based ffmpeg to be able to run on the javascript environment. The recorded video is later saved to the browser memory which reduces the burden on the server. I am now comfortable customizing middlewares / making use of sessions and cookies / creating API.
 
 | ![1](https://user-images.githubusercontent.com/70524037/201041377-e0d58644-62b5-48c8-bcd5-8211caf90279.jpeg) | 
 |:--:| 
