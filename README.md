@@ -42,7 +42,7 @@ I used the modern JS ES6 and compiled them using webpack and babel. I used webas
 ### Used tools & libraries
 [Lang]: [Node.js](https://github.com/Yeonny0723/film-emories/tree/master/src/client/js), JavaScript ES
 
-[Front]: [Pug](https://github.com/Yeonny0723/film-emories/tree/master/src/views), [Webpack](https://github.com/Yeonny0723/film-emories/blob/master/webpack.config.cjs), Babel, [SCSS](https://github.com/Yeonny0723/film-emories/tree/master/src/client/scss), Multer, ESLint, WebAssembly, ffmpeg
+[Front]: [Pug](https://github.com/Yeonny0723/film-emories/tree/master/src/views), [Webpack](https://github.com/Yeonny0723/film-emories/blob/master/webpack.config.cjs), Babel, [SCSS](https://github.com/Yeonny0723/film-emories/tree/master/src/client/scss), Multer, ESLint, ffmpeg
 
 [Server]: Express.js, Passport, AJAX
 
