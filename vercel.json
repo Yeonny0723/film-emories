@@ -1,6 +1,0 @@
-{
-  "version": 2,
-  "name": "film-emories",
-  "builds": [{ "src": "./build/init.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "/build/init.js" }]
-}
