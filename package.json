@@ -39,7 +39,8 @@
     "multer-s3": "^2.10.0",
     "node-fetch": "^2.6.7",
     "pug": "^3.0.2",
-    "regenerator-runtime": "^0.13.10"
+    "regenerator-runtime": "^0.13.10",
+    "vercel": "^28.14.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.19.3",
