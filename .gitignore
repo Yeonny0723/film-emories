@@ -5,3 +5,6 @@
 /uploads
 /assets
 /build
+/dist
+
+environment.d.ts

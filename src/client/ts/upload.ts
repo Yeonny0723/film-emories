@@ -1,53 +1,60 @@
-// libaries import
-import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
+import { createFFmpeg, fetchFile } from "@ffmpeg/ffmpeg";
+import html2canvas from "html2canvas";
 
 // variables
 // For coloring frame
-const colors = document.getElementsByClassName("color");
+const colors = document.getElementsByClassName(
+  "color"
+) as HTMLCollectionOf<HTMLElement>;
 // For video recording
-const actionBtn = document.getElementById("actionBtn");
-const pauseBtn = document.getElementById("pauseBtn");
-const stopBtn = document.getElementById("stopBtn");
-const resumeBtn = document.getElementById("resumeBtn");
-const video = document.getElementById("preview");
-const frame1 = document.getElementsByClassName("frame1")[1];
-const frame2 = document.getElementsByClassName("frame2")[1];
-const frame3 = document.getElementsByClassName("frame3")[1];
-const frame4 = document.getElementsByClassName("frame4")[1];
-const imgDownloadBtn = document.getElementById("download-img");
-const videoDownloadBtn = document.getElementById("download-video");
-const completeBtn = document.getElementById("completeBtn");
+const actionBtn = document.getElementById("actionBtn") as HTMLButtonElement;
+const pauseBtn = document.getElementById("pauseBtn") as HTMLButtonElement;
+const stopBtn = document.getElementById("stopBtn") as HTMLButtonElement;
+const resumeBtn = document.getElementById("resumeBtn") as HTMLButtonElement;
+const video = document.getElementById("preview") as HTMLVideoElement;
+const frame1 = document.getElementsByClassName("frame1")[1] as HTMLDivElement;
+const frame2 = document.getElementsByClassName("frame2")[1] as HTMLDivElement;
+const frame3 = document.getElementsByClassName("frame3")[1] as HTMLDivElement;
+const frame4 = document.getElementsByClassName("frame4")[1] as HTMLDivElement;
+const imgDownloadBtn = document.getElementById(
+  "download-img"
+) as HTMLButtonElement;
+const videoDownloadBtn = document.getElementById(
+  "download-video"
+) as HTMLButtonElement;
+const completeBtn = document.getElementById("completeBtn") as HTMLButtonElement;
 
 // initialize vairbles for recorder
-let stream;
-let recorder;
-let videoFile;
-let videoUrl
-const count = 3 // timer
-const total_take = 4 // total number of photoshoot
+let stream: any;
+let recorder: any;
+let videoFile: any;
+let videoUrl: string;
+const count = 3; // timer
+const total_take = 4; // total number of photoshoot
 const videoName = "film-emories.mp4"; // user download video filename
-const photoName = "film-emories.png" // user download img filename
-
+const photoName = "film-emories.png"; // user download img filename
 
 /**
  * Coloring frame on click func
- * @param {pick frane color event} e 
+ * @param {pick frane color event} e
  */
-const handleColorChange = async(e) => {
-  const color = "#" + e.target.dataset.color;
-  var frames = document.getElementsByClassName("frame-container")
+const handleColorChange = async (e: Event) => {
+  const color = "#" + (e.target as HTMLElement).dataset.color;
+  var frames = document.getElementsByClassName(
+    "frame-container"
+  ) as HTMLCollectionOf<HTMLElement>;
   var frames_arr = [...frames]; // convert nodelist to array
-  frames_arr.forEach((frame)=>{
-    frame.style.backgroundColor = color
+  frames_arr.forEach((frame) => {
+    frame.style.backgroundColor = color;
   });
-}
+};
 
 /**
  * Download file func
- * @param {browser created file downloadable url} fileUrl 
- * @param {custom file name}} fileName 
+ * @param {browser created file downloadable url} fileUrl
+ * @param {custom file name}} fileName
  */
-const downloadFile = (fileUrl, fileName) => {
+const downloadFile = (fileUrl: string, fileName: string) => {
   const a = document.createElement("a");
   a.href = fileUrl;
   a.download = fileName;
@@ -57,20 +64,22 @@ const downloadFile = (fileUrl, fileName) => {
 
 /** Download video */
 const downloadVideo = () => {
-  downloadFile(videoUrl,  videoName);
-}
+  downloadFile(videoUrl, videoName);
+};
 
 /** Download photo */
 const downloadPhoto = () => {
-  // target: an element you are going to capture 
-  const target = document.getElementsByClassName("capture_area")[1];
-  html2canvas(target).then(function(canvas){
+  // target: an element you are going to capture
+  const target = document.getElementsByClassName(
+    "capture_area"
+  )[1] as HTMLDivElement;
+  html2canvas(target).then(function (canvas) {
     var myImage = canvas.toDataURL();
-    downloadFile(myImage, photoName) 
+    downloadFile(myImage, photoName);
   });
-}
+};
 
-// Filenames you want to name to while using ffmpeg 
+// Filenames you want to name to while using ffmpeg
 const files = {
   input: "recording.webm",
   output: "output.mp4",
@@ -80,15 +89,16 @@ const files = {
   thumb4: "film-emories_4.jpg",
 };
 
-const processRecordedData = async() => {
+const processRecordedData = async () => {
   actionBtn.removeEventListener("click", processRecordedData);
   actionBtn.innerText = "This could take up to a min...";
   actionBtn.disabled = true;
 
   const ffmpeg = createFFmpeg({ log: true });
-  await ffmpeg.load();``
-  ffmpeg.FS('writeFile', files.input, await fetchFile(videoFile));
-  await ffmpeg.run('-i', files.input, '-r', '60', files.output);
+  await ffmpeg.load();
+  ``;
+  ffmpeg.FS("writeFile", files.input, await fetchFile(videoFile));
+  await ffmpeg.run("-i", files.input, "-r", "60", files.output);
 
   await ffmpeg.run(
     "-i",
@@ -97,7 +107,7 @@ const processRecordedData = async() => {
     "00:00:02",
     "-frames:v",
     "1",
-    files.thumb1,
+    files.thumb1
   );
   await ffmpeg.run(
     "-i",
@@ -106,7 +116,7 @@ const processRecordedData = async() => {
     "00:00:05",
     "-frames:v",
     "1",
-    files.thumb2,
+    files.thumb2
   );
   await ffmpeg.run(
     "-i",
@@ -115,7 +125,7 @@ const processRecordedData = async() => {
     "00:00:08",
     "-frames:v",
     "1",
-    files.thumb3,
+    files.thumb3
   );
   await ffmpeg.run(
     "-i",
@@ -124,9 +134,9 @@ const processRecordedData = async() => {
     "00:00:11",
     "-frames:v",
     "1",
-    files.thumb4,
+    files.thumb4
   );
-  
+
   const mp4File = ffmpeg.FS("readFile", files.output);
   const thumbFile1 = ffmpeg.FS("readFile", files.thumb1);
   const thumbFile2 = ffmpeg.FS("readFile", files.thumb2);
@@ -150,13 +160,13 @@ const processRecordedData = async() => {
   img1.src = thumbUrl1;
   frame1.appendChild(img1);
   const img2 = document.createElement("img");
-  img2.src = thumbUrl2
+  img2.src = thumbUrl2;
   frame2.appendChild(img2);
   const img3 = document.createElement("img");
-  img3.src = thumbUrl3
+  img3.src = thumbUrl3;
   frame3.appendChild(img3);
   const img4 = document.createElement("img");
-  img4.src = thumbUrl4
+  img4.src = thumbUrl4;
   frame4.appendChild(img4);
 
   ffmpeg.FS("unlink", files.input);
@@ -184,7 +194,7 @@ const processRecordedData = async() => {
 const handleStop = () => {
   // console.log("stopped!")
   recorder.stop();
-  recorder.ondataavailable = (event) => {
+  recorder.ondataavailable = (event: any) => {
     videoFile = URL.createObjectURL(event.data);
     video.srcObject = null;
     video.src = videoFile;
@@ -193,29 +203,29 @@ const handleStop = () => {
     actionBtn.innerText = "Click to continue!";
     actionBtn.disabled = false;
     actionBtn.addEventListener("click", processRecordedData);
-  }
-}
+  };
+};
 
 /**
  * JS sleeping func
- * @param {milliseconds} ms 
- * @returns 
+ * @param {milliseconds} ms
+ * @returns
  */
-const sleep = (ms) => {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+const sleep = (ms: number) => {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+};
 
 /**
  * Remaining time updating func
  */
-const timer = async() => {
-  for (let i=count; i>0; i--){
-    actionBtn.innerHTML = i
+const timer = async () => {
+  for (let i = count; i > 0; i--) {
+    actionBtn.innerHTML = i.toString();
     await sleep(1000);
   }
-}
+};
 
-const timeOut = 1200 * count // we set timeout per 1200m considering js built-in delay
+const timeOut = 1200 * count; // we set timeout per 1200m considering js built-in delay
 let take = 1; // the variable to tell which number of photos they are out of total_take
 
 /**
@@ -227,12 +237,12 @@ const handlePause = () => {
   recorder.pause();
   actionBtn.removeEventListener("click", handleStart);
   actionBtn.addEventListener("click", handleResume);
-  if (take === total_take){
-    actionBtn.innerText = "Final take" + " 👆"
+  if (take === total_take) {
+    actionBtn.innerText = "Final take" + " 👆";
   } else {
-    actionBtn.innerText = "Take " + String(take) + " 👆"
+    actionBtn.innerText = "Take " + String(take) + " 👆";
   }
-}
+};
 
 /**
  * Handling resume video func
@@ -242,12 +252,16 @@ const handleResume = () => {
   // if it is the last take
   if (take === total_take) {
     actionBtn.removeEventListener("click", handleResume);
-    setTimeout(()=>{stopBtn.click();}, timeOut);
+    setTimeout(() => {
+      stopBtn.click();
+    }, timeOut);
     timer();
     actionBtn.disabled = true;
     recorder.resume();
   } else {
-    setTimeout(()=>{pauseBtn.click();}, timeOut);
+    setTimeout(() => {
+      pauseBtn.click();
+    }, timeOut);
     timer();
     actionBtn.disabled = true;
     recorder.resume();
@@ -255,14 +269,16 @@ const handleResume = () => {
     actionBtn.addEventListener("click", handlePause);
     take += 1;
   }
-}
+};
 
 /**
  * Handle start video recording func
  */
 const handleStart = () => {
   recorder = new MediaRecorder(stream, { mimeType: "video/webm" });
-  setTimeout(()=>{pauseBtn.click();}, timeOut);
+  setTimeout(() => {
+    pauseBtn.click();
+  }, timeOut);
   timer(); // initiate timer
   actionBtn.disabled = true;
   recorder.start(); // start recording video
@@ -285,12 +301,10 @@ const init = async () => {
 };
 init();
 
-
-
 // Add event listeners to each color
-Array.from(colors).forEach((color)=>{
-  color.addEventListener("click", handleColorChange)
-})
+Array.from(colors).forEach((color) => {
+  color.addEventListener("click", handleColorChange);
+});
 
 // Add event listeners for recording
 actionBtn.addEventListener("click", handleStart);
@@ -300,3 +314,5 @@ resumeBtn.addEventListener("click", handleResume);
 
 imgDownloadBtn.addEventListener("click", downloadPhoto);
 videoDownloadBtn.addEventListener("click", downloadVideo);
+
+export {};

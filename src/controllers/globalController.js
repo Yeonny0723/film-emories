@@ -1,1 +1,0 @@
-export const aboutUs = (req, res) => res.render("aboutUs", {pageTitle: "Home"});

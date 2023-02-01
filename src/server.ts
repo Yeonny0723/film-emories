@@ -1,7 +1,7 @@
 // import routers
-import rootRouter from "./routers/rootRouter"
-import userRouter from "./routers/userRouter"
-import videoRouter from "./routers/videoRouter"
+import rootRouter from "./routers/rootRouter";
+import userRouter from "./routers/userRouter";
+import videoRouter from "./routers/videoRouter";
 import apiRouter from "./routers/apiRouter";
 
 // import libraries for server
@@ -28,17 +28,17 @@ app.use(logger);
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.json());
+app.use(express.json()); // req, res를 json 객체 형태로
 
 app.use(
   session({
-    secret: process.env.COOKIE_SECRET,
-    resave: false, 
+    secret: process.env.COOKIE_SECRET || "",
+    resave: false,
     saveUninitialized: false,
     store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
   })
-  );
-  
+);
+
 app.use(flash());
 
 app.use(localsMiddleware);
@@ -53,5 +53,4 @@ app.use("/users", userRouter);
 app.use("/videos", videoRouter);
 app.use("/api", apiRouter);
 
-
-export default app
+export default app;
