@@ -1,16 +1,16 @@
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
-const BASE_JS = "./src/client/js/";
+const BASE_JS = "./src/client/ts/";
 
 module.exports = {
   entry: {
-    main: BASE_JS + "main.js",
-    videoPlayer: BASE_JS + "videoPlayer.js",
-    upload: BASE_JS + "upload.js",
-    commentSection: BASE_JS + "commentSection.js",
-    profile: BASE_JS + "profile.js",
-    shared: BASE_JS + "shared.js",
+    main: BASE_JS + "main.ts",
+    videoPlayer: BASE_JS + "videoPlayer.ts",
+    upload: BASE_JS + "upload.ts",
+    commentSection: BASE_JS + "commentSection.ts",
+    profile: BASE_JS + "profile.ts",
+    shared: BASE_JS + "shared.ts",
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -25,13 +25,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: [["@babel/preset-env", { targets: "defaults" }]],
-          },
-        },
+        test: /\.ts$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
       },
       {
         test: /\.scss$/,
@@ -40,3 +36,5 @@ module.exports = {
     ],
   },
 };
+
+// 참고: https://vccolombo.github.io/blog/tsc-how-to-copy-non-typescript-files-when-building/
