@@ -1,14 +1,18 @@
 // variables
-const videoContainer = document.getElementById("videoContainer");
-const form = document.getElementById("commentForm");
-let del_btns = document.querySelectorAll(".del_comment");
+const videoContainer = document.getElementById(
+  "videoContainer"
+) as HTMLDivElement;
+const form = document.getElementById("commentForm") as HTMLFormElement;
+let del_btns = document.querySelectorAll(
+  ".del_comment"
+) as NodeListOf<HTMLElement>;
 
 /**
  * Add comment on screen func (to show it real-time)
- * @param {comment content} text 
- * @param {comment id} id 
+ * @param {comment content} text
+ * @param {comment id} id
  */
-const addComment = (text, id) => {
+const addComment = (text: string, id: string) => {
   const videoComments = document.querySelector(".video__comments ul");
   const newComment = document.createElement("li");
   newComment.dataset.id = id;
@@ -20,31 +24,30 @@ const addComment = (text, id) => {
   span.classList.add("comment-context");
   const span2 = document.createElement("span");
   span2.innerText = "❌";
-  span2.className = "del_comment"
+  span2.className = "del_comment";
   span2.addEventListener("click", handleDelete);
   newComment.appendChild(icon);
   newComment.appendChild(span);
   newComment.appendChild(span2);
-  videoComments.prepend(newComment);
+  videoComments!.prepend(newComment);
 };
 
 /**
  * Deleting comment on screen func (to show it real-time
- * @param {comment id} id 
+ * @param {comment id} id
  */
-const deleteComment = (id) => {
-  const comment = document.querySelector(`[data-id="${id}"]`)
-  comment.parentNode.removeChild(comment); 
-}
-
+const deleteComment = (id: string) => {
+  const comment = document.querySelector(`[data-id="${id}"]`) as HTMLElement;
+  comment.parentNode && comment.parentNode.removeChild(comment);
+};
 
 /**
- * Posting comment func fro DB using custom api. 
- * @param {click add btn event} event 
+ * Posting comment func fro DB using custom api.
+ * @param {click add btn event} event
  */
-const handleSubmit = async(event) => {
+const handleSubmit = async (event: SubmitEvent) => {
   event.preventDefault();
-  const textarea = form.querySelector("textarea");
+  const textarea = form.querySelector("textarea") as HTMLTextAreaElement;
   const text = textarea.value;
   const videoId = videoContainer.dataset.id;
   if (text === "") {
@@ -66,24 +69,23 @@ const handleSubmit = async(event) => {
 
 /**
  * Deleting comment func from DB using custom api.
- * @param {click delete btn event} event 
+ * @param {click delete btn event} event
  */
-const handleDelete = async (event) => {
-  const comment_id = event.target.parentNode.dataset.id;
+const handleDelete = async (event: Event) => {
+  const comment_id = ((event.target as HTMLElement).parentNode as HTMLElement)
+    .dataset.id;
   const response = await fetch(`/api/comments/${comment_id}/delete`, {
     method: "DELETE",
   });
-  if (response.status === 201){
-    deleteComment(comment_id);
+  if (response.status === 201) {
+    comment_id && deleteComment(comment_id);
   }
-}
-
+};
 
 // add eventlistener to each delete btn
-del_btns.forEach(del_btn=>{
+del_btns.forEach((del_btn) => {
   del_btn.addEventListener("click", handleDelete);
-})
-// only add event listener if there's is form
-if (form) {
-  form.addEventListener("submit", handleSubmit);
-}
+});
+form && form.addEventListener("submit", handleSubmit);
+
+export {};
