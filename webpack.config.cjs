@@ -1,3 +1,5 @@
+require("dotenv").config();
+const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 
@@ -15,6 +17,14 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin({
       filename: "css/styles.css",
+    }),
+    new webpack.EnvironmentPlugin({
+      COOKIE_SECRET: JSON.stringify(process.env.COOKIE_SECRET),
+      DB_URL: JSON.stringify(process.env.DB_URL),
+      GH_CLIENT: JSON.stringify(process.env.GH_CLIENT),
+      GH_SECRET: JSON.stringify(process.env.GH_SECRET),
+      AWS_ID: JSON.stringify(process.env.AWS_ID),
+      AWS_SECRET: JSON.stringify(process.env.AWS_SECRET),
     }),
   ],
   output: {

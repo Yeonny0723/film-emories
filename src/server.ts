@@ -32,10 +32,10 @@ app.use(express.json()); // req, res를 json 객체 형태로
 
 app.use(
   session({
-    secret: (process.env.COOKIE_SECRET as string) || "",
+    secret: process.env.COOKIE_SECRET || "",
     resave: false,
     saveUninitialized: false,
-    store: MongoStore.create({ mongoUrl: process.env.DB_URL as string }),
+    store: MongoStore.create({ mongoUrl: process.env.DB_URL }),
   })
 );
 

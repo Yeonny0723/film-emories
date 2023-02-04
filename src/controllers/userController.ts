@@ -79,7 +79,7 @@ export const postLogin = async (req: Request, res: Response) => {
 export const startGithubLogin = (req: Request, res: Response) => {
   const baseUrl = "https://github.com/login/oauth/authorize";
   const config = {
-    client_id: process.env.GH_CLIENT as string,
+    client_id: process.env.GH_CLIENT,
     allow_signup: "false",
     scope: "read:user user:email",
   };
@@ -91,8 +91,8 @@ export const startGithubLogin = (req: Request, res: Response) => {
 export const finishGithubLogin = async (req: Request, res: Response) => {
   const baseUrl = "https://github.com/login/oauth/access_token";
   const config = {
-    client_id: process.env.GH_CLIENT as string,
-    client_secret: process.env.GH_SECRET as string,
+    client_id: process.env.GH_CLIENT,
+    client_secret: process.env.GH_SECRET,
     code: req.query.code?.toString() || "",
   };
   const params = new URLSearchParams(config).toString();
@@ -191,7 +191,7 @@ export const postEdit = async (req: any, res: Response) => {
   }
 
   // const isHeroku = "Production" // Local
-  const isHeroku = process.env.NODE_ENV as string;
+  const isHeroku = process.env.NODE_ENV;
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {

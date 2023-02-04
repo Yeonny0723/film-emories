@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node build/init.js",
     "build": "npm run build:server && npm run build:assets",
-    "build:server": "tsc && babel dist -d build",
-    "build:assets": "webpack --mode=production",
+    "build:server": "rimraf build dist && tsc && babel dist -d build",
+    "build:assets": "NODE_ENV=production webpack --mode=production",
     "dev:server": "tsc && nodemon",
     "dev:assets": "rimraf assets && webpack --config webpack.config.cjs --mode=development -w"
   },
@@ -34,7 +34,6 @@
     "bcrypt": "^5.1.0",
     "connect-mongo": "^4.6.0",
     "css-loader": "^6.7.1",
-    "dotenv": "^16.0.3",
     "express": "^4.18.1",
     "express-flash": "^0.0.2",
     "express-session": "^1.17.3",
@@ -62,6 +61,7 @@
     "@types/multer-s3": "^3.0.0",
     "@types/node-fetch": "^2.6.2",
     "@types/react": "^18.0.27",
+    "dotenv": "^16.0.3",
     "file-loader": "^6.2.0",
     "mini-css-extract-plugin": "^1.5.0",
     "nodemon": "^2.0.20",

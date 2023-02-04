@@ -12,13 +12,13 @@ declare module "express-session" {
 
 const s3 = new S3Client({
   credentials: {
-    accessKeyId: (process.env.AWS_ID as string) || "",
-    secretAccessKey: (process.env.AWS_SECRET as string) || "",
+    accessKeyId: process.env.AWS_ID || "",
+    secretAccessKey: process.env.AWS_SECRET || "",
   },
   region: "ap-northeast-2",
 });
 
-const isHeroku = process.env.NODE_ENV as string;
+const isHeroku = process.env.NODE_ENV;
 // const isHeroku = "Production" // Local
 
 const s3ImageUploader = multerS3({
