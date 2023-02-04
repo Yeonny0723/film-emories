@@ -7,12 +7,12 @@
   [Film-emories](https://filmemories-yeonny0723.koyeb.app/)
 
 - Testing Account
+  
+  * ID>
+    test.juyeon@naver.com
 
-ID>
-test.juyeon@naver.com
-
-PW>
-TestMe11
+  * PW>
+    TestMe11
 
 - Demo
 
