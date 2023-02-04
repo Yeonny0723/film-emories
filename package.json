@@ -1,5 +1,5 @@
 {
-  "name": "wetube",
+  "name": "film-emories",
   "version": "1.0.0",
   "description": "",
   "main": "init.js",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Yeonny0723/wetube.git"
+    "url": "git+https://github.com/Yeonny0723/film-emories.git"
   },
   "author": "Yeonny Kim",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Yeonny0723/wetube/issues"
+    "url": "https://github.com/Yeonny0723/film-emories/issues"
   },
-  "homepage": "https://github.com/Yeonny0723/wetube#readme",
+  "homepage": "https://github.com/Yeonny0723/film-emories#readme",
   "dependencies": {
     "@ffmpeg/core": "^0.11.0",
     "@ffmpeg/ffmpeg": "^0.11.6",
