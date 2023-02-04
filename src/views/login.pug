@@ -3,7 +3,7 @@ extends base
 block content
     h1.title Login
     form(method="POST")
-        input(placeholder="Username", name="username", type="text", required)
+        input(placeholder="Email", name="email", type="text", required)
         input(placeholder="Password", name="password", type="password", required)
         input(type="submit", value="Login")
         include partials/social-login

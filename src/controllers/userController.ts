@@ -11,7 +11,7 @@ export const getJoin = (req: Request, res: Response) =>
   res.render("join", { pageTitle: "Join" });
 
 export const postJoin = async (req: Request, res: Response) => {
-  const { name, username, email, password, password2, location } = req.body;
+  const { username, email, password, password2 } = req.body;
   const pageTitle = "Join";
   if (password !== password2) {
     req.flash("error", "Password confirmation does not match.");
@@ -28,12 +28,10 @@ export const postJoin = async (req: Request, res: Response) => {
   }
   try {
     await User.create({
-      name,
       username,
       avatarUrl: "",
       email,
       password,
-      location,
     });
     req.flash("info", "Try logging in with your new account!");
     return res.redirect("/login");
@@ -54,11 +52,11 @@ export const getLogin = (req: Request, res: Response) => {
 };
 
 export const postLogin = async (req: Request, res: Response) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
   const pageTitle = "Login";
-  const user = await User.findOne({ username, socialOnly: false });
+  const user = await User.findOne({ email, socialOnly: false });
   if (!user) {
-    req.flash("error", "An account with this username does not exists.");
+    req.flash("error", "An account with this email does not exists.");
     return res.status(400).render("login", {
       pageTitle,
     });
@@ -132,12 +130,10 @@ export const finishGithubLogin = async (req: Request, res: Response) => {
     if (!user) {
       user = await User.create({
         avatarUrl: userData.avatar_url,
-        name: userData.name,
         username: userData.login,
         email: emailObj.email,
         password: "",
         socialOnly: true,
-        location: userData.location,
       });
     }
     req.session.loggedIn = true;
@@ -166,7 +162,7 @@ export const postEdit = async (req: any, res: Response) => {
     session: {
       user: { _id, avatarUrl },
     },
-    body: { name, email, username, location },
+    body: { email, username },
     file,
   } = req;
 
@@ -201,10 +197,8 @@ export const postEdit = async (req: any, res: Response) => {
           ? (file as Express.MulterS3.File).location
           : file.path
         : avatarUrl,
-      name,
       email,
       username,
-      location,
     },
     { new: true }
   );
@@ -265,7 +259,7 @@ export const see = async (req: Request, res: Response) => {
     return res.status(404).render("404", { pageTitle: "User not found." });
   }
   return res.render("users/profile", {
-    pageTitle: user.name,
+    pageTitle: user.username,
     user,
   });
 };

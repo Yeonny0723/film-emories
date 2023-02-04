@@ -22,8 +22,7 @@ header
                                         //-     img.header__avatar(src="/"+loggedInUser.avatarUrl, crossorigin)
                             a(href=`/users/${loggedInUser._id}`).link
                                 div(style="height: 100%; display: flex;justify-content: space-around;flex-direction: column;")
-                                        h2 #{loggedInUser.name}
-                                        h4 #{loggedInUser.username}
+                                        h2 #{loggedInUser.username}
                         div
                             a(href=`/users/${loggedInUser._id}`).link.subtle-btn
                                 span My Profile

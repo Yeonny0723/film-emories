@@ -7,6 +7,7 @@ export const photobook = async (req: Request, res: Response) => {
   const videos = await Video.find({})
     .sort({ createdAt: "desc" })
     .populate("owner");
+  console.log("***", videos);
   return res.render("photobook", { pageTitle: "Photobook", videos });
 };
 
