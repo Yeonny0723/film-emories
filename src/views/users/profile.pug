@@ -8,10 +8,11 @@ block content
         if !user.avatarUrl
             h3 😀
         else
-            if isHeroku 
-                img.header__avatar(src=user.avatarUrl, crossorigin).avatar
-            else 
-                img.header__avatar(src="/"+user.avatarUrl, crossorigin).avatar
+            img.header__avatar(src=user.avatarUrl, crossorigin).avatar
+            //- if isHeroku 
+            //-     img.header__avatar(src=user.avatarUrl, crossorigin).avatar
+            //- else 
+            //-     img.header__avatar(src="/"+user.avatarUrl, crossorigin).avatar
         h3=user.name
         span film-emories.com/#{user.username}
         if "/users/" + loggedInUser._id === current_url

@@ -15,10 +15,11 @@ header
                                     if !loggedInUser.avatarUrl
                                         h3 😀
                                     else
-                                        if isHeroku 
-                                            img.header__avatar(src=loggedInUser.avatarUrl, crossorigin)
-                                        else 
-                                            img.header__avatar(src="/"+loggedInUser.avatarUrl, crossorigin)
+                                        img.header__avatar(src=loggedInUser.avatarUrl, crossorigin)
+                                        //- if isHeroku 
+                                        //-     img.header__avatar(src=loggedInUser.avatarUrl, crossorigin)
+                                        //- else 
+                                        //-     img.header__avatar(src="/"+loggedInUser.avatarUrl, crossorigin)
                             a(href=`/users/${loggedInUser._id}`).link
                                 div(style="height: 100%; display: flex;justify-content: space-around;flex-direction: column;")
                                         h2 #{loggedInUser.name}

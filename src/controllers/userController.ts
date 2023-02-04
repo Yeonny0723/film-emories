@@ -190,8 +190,8 @@ export const postEdit = async (req: any, res: Response) => {
     }
   }
 
-  // const isHeroku = "Production" // Local
   const isHeroku = process.env.NODE_ENV;
+
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {

@@ -1,10 +1,11 @@
 mixin video(video)
     a(href=`/videos/${video.id}`).video-mixin
         div.video-mixin__thumb
-            if isHeroku
-                img.video-mixin-bg(src=video.thumbUrl, crossorigin)
-            else
-                img.video-mixin-bg(src="/" + video.thumbUrl, crossorigin)
+            img.video-mixin-bg(src=video.thumbUrl, crossorigin)
+            //- if isHeroku
+            //-     img.video-mixin-bg(src=video.thumbUrl, crossorigin)
+            //- else
+            //-     img.video-mixin-bg(src="/" + video.thumbUrl, crossorigin)
         div.video-mixin__data
             span.video-mixin__title=video.title
             div.video-mixin__meta
