@@ -5,11 +5,13 @@
   "main": "init.js",
   "scripts": {
     "start": "node build/init.js",
-    "build": "npm run build:server && npm run build:assets",
-    "build:server": "rimraf build dist && tsc && babel dist -d build",
+    "build": "npm run clean && npm run build:server && npm run build:assets",
+    "build:server": "tsc && babel dist -d build",
     "build:assets": "NODE_ENV=production webpack --mode=production",
+    "dev": "npm run clean && npm run dev:server && npm run dev:assets",
     "dev:server": "tsc && nodemon",
-    "dev:assets": "rimraf assets && webpack --config webpack.config.cjs --mode=development -w"
+    "dev:assets": "npm run clean && webpack --config webpack.config.cjs --mode=development -w",
+    "clean": "rimraf build dist assets"
   },
   "repository": {
     "type": "git",
