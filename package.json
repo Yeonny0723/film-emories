@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node build/init.js",
     "build": "npm run build:server && npm run build:assets",
-    "build:server": "babel dist -d build",
+    "build:server": "tsc && babel dist -d build",
     "build:assets": "webpack --mode=production",
     "dev:server": "tsc && nodemon",
     "dev:assets": "rimraf assets && webpack --config webpack.config.cjs --mode=development -w"

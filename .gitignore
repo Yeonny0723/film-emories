@@ -6,5 +6,4 @@
 /assets
 /build
 /dist
-
-environment.d.ts
+/src/environment.d.ts
