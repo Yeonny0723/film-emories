@@ -6,6 +6,14 @@
 
   [Film-emories](https://filmemories-yeonny0723.koyeb.app/)
 
+- Testing Account
+
+ID>
+test.juyeon@naver.com
+
+PW>
+TestMe11
+
 - Demo
 
   [Demo](https://www.youtube.com/watch?v=U8DoEwD1OlU)
