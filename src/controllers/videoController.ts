@@ -87,7 +87,7 @@ export const postUpload = async (req: any, res: Response) => {
   } = req;
 
   // const isHeroku = "Production" // Local
-  const isHeroku = process.env.NODE_ENV;
+  const isHeroku = process.env.NODE_ENV as string;
   try {
     const newVideo = await Video.create({
       title,
