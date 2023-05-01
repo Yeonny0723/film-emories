@@ -7,6 +7,14 @@ html(lang="ko")
         meta(name="description" content="Online photo booth")
         meta(name="Online photo booth" content="photobooth,photo,film,filmcamera,memory")
         meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+
+        meta(name="og:site_name" content="Film-emories")
+        meta(name="og:title" content="온라인 포토부스 사진찍기")
+        meta(name="og:description" content="추억의 순간을 기록해보세요.")
+        meta(name="og:url" content="https://film-emories.swygbro.com")
+        meta(name="og:image" content="/img/home_shoot.jpg")
+
         title #{siteName} | #{pageTitle}
         link(rel="icon" type="image/x-icon" href="/img/logo.png")
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css")
@@ -14,6 +22,7 @@ html(lang="ko")
         link(rel="preconnect" href="https://fonts.googleapis.com")
         link(rel="preconnect" href="https://fonts.gstatic.com" crossorigin)
         link(href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet")
+        script(defer='', src='https://cdn.swygbro.com/public/widget/swyg-widget.js')
     body
         include partials/header
         if messages.error
