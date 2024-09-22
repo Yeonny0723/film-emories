@@ -1,0 +1,49 @@
+.
+├── README.md
+├── app
+│   ├── auth
+│   │   ├── api
+│   │   ├── components
+│   │   │   ├── client
+│   │   │   └── server
+│   │   ├── hooks
+│   │   ├── pages
+│   │   │   ├── loading.tsx
+│   │   │   └── page.tsx
+│   │   ├── services
+│   │   └── styles
+│   ├── common
+│   │   ├── components
+│   │   ├── hooks
+│   │   ├── styles
+│   │   │   └── index.css
+│   │   └── utils
+│   ├── dashboard
+│   ├── layout.tsx
+│   └── page.tsx
+├── commitlint.config.js
+├── file_tree.txt
+├── lib
+│   ├── auth.ts
+│   ├── constants.ts
+│   ├── db.ts
+│   └── session.ts
+├── middlewares
+│   ├── authMiddlewares.ts
+│   └── dashboardMiddlewares.ts
+├── next-env.d.ts
+├── next.config.mjs
+├── package.json
+├── postcss.config.mjs
+├── prisma
+├── public
+│   ├── fonts
+│   └── image
+├── tailwind.config.ts
+├── tsconfig.json
+├── tsconfig.tsbuildinfo
+├── types
+├── yarn.lock
+└── yarnrc.yml
+
+24 directories, 23 files
